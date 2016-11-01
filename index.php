@@ -2,15 +2,14 @@
 <html lang="it">
 <head>
 	
-	<!-- Required meta tags always come first -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 
 	<title>Calcola i reali costi della tua Partita IVA nel regime forfettario</title>
 
-	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<meta property="og:type" content="profile">
 	<meta property="og:title" content="Calcola Partita Iva">
@@ -51,7 +50,11 @@
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
 
+	<!-- GitHub -->
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
+
 	<div id="app" class="container py-3">
+
 		<div class="row">
 			<div class="col-md-6 offset-md-3">
 
@@ -124,7 +127,11 @@
 
 				</div>
 
-				<div v-if="tipologia" class="card card-block card-inverse card-info">
+				<button v-show="tipologia" class="btn btn-secondary btn-block mb-1" v-on:click="showIva = !showIva">
+					E l'IVA, la ritenuta d'acconto e l'IRPEF?
+				</button>
+
+				<div v-if="showIva" class="card card-block">
 
 					<h4 class="card-title">IVA, ritenuta d'acconto e IRPEF</h4>
 
@@ -230,9 +237,16 @@
 				</small>
 
 				<hr>
+				
+				<div class="text-xs-center">
 
-				<p class="text-xs-center">Un progetto <a href="http://www.orangedropdesign.com/">Orange Drop Design</a></p>
-	
+					<p>Made with <i class="fa fa-heart text-danger"></i> by <a href="http://www.orangedropdesign.com/">Orange Drop Design</a></p>
+
+					<a class="github-button" href="https://github.com/andrearufo" data-count-href="/andrearufo/followers" data-count-api="/users/andrearufo#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @andrearufo on GitHub">Follow @andrearufo</a>
+
+					<a class="github-button" href="https://github.com/andrearufo/calcolapiva" data-icon="octicon-star" data-count-href="/andrearufo/calcolapiva/stargazers" data-count-api="/repos/andrearufo/calcolapiva#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star andrearufo/calcolapiva on GitHub">Star</a>
+				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -324,6 +338,7 @@
 			tipologia: false,
 			fatturato: 18000,
 			checkLimit: false,
+			showIva: false,
 
 			/*
 			mesi: [
