@@ -77,15 +77,23 @@
 
 					<h4 class="card-title">Tipo di attività</h4>
 
-					<p> In base al tipo di attività c'è un limite di fatturato annuale e una percentuale di redditivita <strong>forfettaria</strong> che determina la percentuale di spesa e quindi il reddito sul fatturato... ma ci arriveremo dopo!</p>
+					<p class="lead">Scegli prima il tipo di attività e poi scorri in basso.</p>
 
-					<div class="form-check" v-for="a in attivita">
-						<label class="form-check-label">
-							<input class="form-check-input" type="radio" :value="a" v-model="tipologia">
-							{{ a.nom }}<br>
-							<small>Cod. ATECO: {{ a.cod }}</small>
-						</label>
+					<p> In base al tipo di attività c'è un limite di fatturato annuale e una percentuale di redditivita <strong>forfettaria</strong> che determina la percentuale di spesa e quindi il reddito sul fatturato... ma ci arriveremo dopo!</p>
+					
+					<div class="form-group">
+						<div class="form-check" v-for="a in attivita">
+							<label class="form-check-label">
+								<input class="form-check-input" type="radio" :value="a" v-model="tipologia">
+								{{ a.nom }}<br>
+								<small class="text-muted" v-show="showCodici">Cod. ATECO: {{ a.cod }}</small>
+							</label>
+						</div>
 					</div>
+
+					<button type="button" class="btn btn-secondary btn-sm btn-block" v-on:click="showCodici = !showCodici">
+						Mostra i codici ATECO delle attività
+					</button>
 
 				</div>
 
@@ -128,11 +136,11 @@
 
 				</div>
 
-				<button v-show="tipologia" class="btn btn-secondary btn-block mb-1" v-on:click="showIva = !showIva">
+				<button v-show="tipologia" class="btn btn-warning btn-block mb-1" v-on:click="showIva = !showIva">
 					E l'IVA, la ritenuta d'acconto e l'IRPEF?
 				</button>
 
-				<div v-if="showIva" class="card card-block">
+				<div v-if="showIva" class="card card-block card-outline-warning">
 
 					<h4 class="card-title">IVA, ritenuta d'acconto e IRPEF</h4>
 
@@ -286,7 +294,7 @@
 				},
 
 				{
-					nom: 'Commercio ambulante di prodotti alimenta000ri e bevande',
+					nom: 'Commercio ambulante di prodotti alimentari e bevande',
 					cod: '47.81',
 					red: 40,
 					lim: 40000
@@ -340,6 +348,7 @@
 			fatturato: 18000,
 			checkLimit: false,
 			showIva: false,
+			showCodici: false
 
 			/*
 			mesi: [
