@@ -60,6 +60,8 @@
 				<p><img src="image.png" class="img-fluid rounded"></p>
 
 				<p>Questa piccola app serve a fare una stima o un computo veloce di quanto e come potrebbe svilupparsi una attività gestita sulla nuova partita I.V.A. del nuovo regime forfettario.</p>
+					
+				<!-- scelta tipologia -->
 
 				<div class="card card-block">
 
@@ -84,6 +86,8 @@
 					</button>
 
 				</div>
+
+				<!-- Inserimento dati di fatturato -->
 
 				<div v-if="tipologia" class="card card-block">
 
@@ -124,6 +128,8 @@
 
 				</div>
 
+				<!-- Iva e Irpef -->
+
 				<button v-show="tipologia" class="btn btn-warning btn-block mb-1" v-on:click="showIva = !showIva">
 					E l'IVA, la ritenuta d'acconto e l'IRPEF?
 				</button>
@@ -163,6 +169,50 @@
 
 				</div>
 
+				<!-- Previdenza -->
+
+				<div v-if="tipologia" class="card card-block">
+
+					<h4 class="card-title">Regime di previdenza sociale</h4>
+
+					<p>Ovvero: <strong>pensione</strong>. Nel caso standard è il 25.72% del reddito. Non sono effettivamente tasse ma dei versamenti di previdenza sociale che andranno a comprire la nostra futura pensione.</p>
+
+					<p>Per alcune categorie di lavoratori vi è una gestione diversa della previdenza sociale: per esempio gli avvocati hanno una loro cassa di previdenza sociale e quindi non sono soggetti al pagemento della previdenza sociale nelle casse dell'INPS per un valore diverso da quello degli altri.</p>
+
+					<div class="form-group">
+						<label>Tipo di contributo</label>
+						<div class="form-check">
+							<label class="form-check-label">
+								<input class="form-check-input" type="radio" name="previdenza" v-model="previdenza" value="per"> In percentuale sul reddito
+							</label>
+						</div>
+						<div class="form-check">
+							<label class="form-check-label">
+								<input class="form-check-input" type="radio" name="previdenza" v-model="previdenza" value="rel"> Un valore fisso
+							</label>
+						</div>
+					</div>
+
+					<div class="form-group" v-if="previdenza == 'per'">
+						<label>Inserisci la percentuale</label>
+						<div class="input-group">
+							<span class="input-group-addon">%</span>
+							<input class="form-control" type="number" min="0" max="100" v-model="previdenzaper">
+						</div>
+					</div>
+
+					<div class="form-group" v-if="previdenza == 'rel'">
+						<label>Inserisci la somma</label>
+						<div class="input-group">
+							<span class="input-group-addon">€</span>
+							<input class="form-control" type="number" min="0" step="1" v-model="previdenzarel">
+						</div>
+					</div>
+
+				</div>
+
+				<!-- Anno 1 to 5 -->
+
 				<div v-if="tipologia" class="card card-block">
 
 					<h4 class="card-title">Dal 1mo al 5to anno</h4>
@@ -182,7 +232,7 @@
 							<span class="input-group-addon">€</span>
 							<input class="form-control" disabled type="number" min="0" step="1" v-model="contributi">
 						</div>
-						<small class="form-text text-muted">Ovvero: <strong>pensione</strong>. È il 25.72% del reddito. Non sono effettivamente tasse ma dei versamenti di previdenza sociale che andranno a comprire la nostra futura pensione.</small>
+						<small class="form-text text-muted">Ovvero: <strong>pensione</strong>.</small>
 					</div>
 
 					<div class="form-group">
@@ -195,6 +245,8 @@
 					</div>
 
 				</div>
+
+				<!-- Dal sesto anno -->
 
 				<div v-if="tipologia" class="card card-block">
 
@@ -215,7 +267,7 @@
 							<span class="input-group-addon">€</span>
 							<input class="form-control" disabled type="number" min="0" step="1" v-model="contributi">
 						</div>
-						<small class="form-text text-muted">Ovvero: <strong>pensione</strong>. È il 25.72% del reddito. Non sono effettivamente tasse ma dei versamenti di previdenza sociale che andranno a comprire la nostra futura pensione.</small>
+						<small class="form-text text-muted">Ovvero: <strong>pensione</strong>.</small>
 					</div>
 
 					<div class="form-group">
@@ -333,6 +385,11 @@
 			],
 			
 			tipologia: false,
+			
+			previdenza: 'per',
+			previdenzarel: 3200,
+			previdenzaper: 25.72,
+
 			fatturato: 18000,
 			checkLimit: false,
 			showIva: false,
@@ -386,7 +443,12 @@
 			},
 
 			contributi: function(){
-				return (this.reddito / 100 * 25.72).toFixed(2);
+				if( this.previdenza == 'rel')
+					return (this.reddito - this.previdenzarel).toFixed(2);
+				else if( this.previdenza == 'per' )
+					return (this.reddito / 100 * this.previdenzaper).toFixed(2);
+				else
+					return 0;
 			},
 
 			netto: function(){
