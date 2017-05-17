@@ -6,11 +6,13 @@
 
 Questo calcolatore nasce con lo scopo di sperimentare alcune funzionalità di Vue.js e metterle in pratica su dei dati certi e utili.
 
+È possibile utilizzare questo strumento in via del tutto dimostrativa su [dev.andrearufo.it/calcolapiva](http://dev.andrearufo.it/calcolapiva/)
+
 ## Autore
 
 __Andrea Rufo__ webdesigner freelancer
 
-[www.orangedropdesign.com](http://www.orangedropdesign.com)
+[www.andrearufo.it](http://www.andrearufo.it)
 
 ### Disclaimer
 
