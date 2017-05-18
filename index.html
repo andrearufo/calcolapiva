@@ -8,7 +8,7 @@
 
 	<title>Aprire la Partita IVA: quanto mi costa nel regime forfettario 2016?</title>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<meta property="og:type" content="website">
@@ -47,11 +47,11 @@
 		<div class="row">
 			<div class="col-md-6 offset-md-3">
 
-				<h1 class="text-xs-center">Calcola P. IVA</h1>
+				<h1 class="text-center">Calcola P. IVA</h1>
 
-				<p class="lead text-xs-center">Ovvero, fare una stima veloce per vedere se mi conviene</p>
+				<p class="lead text-center">Ovvero, fare una stima veloce per vedere se mi conviene</p>
 
-				<div class="card card-block text-xs-center">
+				<div class="card card-block mb-3 text-center">
 
 					<div class="fb-like" data-href="http://dev.andrearufo.it/calcolapiva/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
 
@@ -63,7 +63,7 @@
 					
 				<!-- scelta tipologia -->
 
-				<div class="card card-block">
+				<div class="card card-block mb-3">
 
 					<h4 class="card-title">Tipo di attività</h4>
 
@@ -89,7 +89,7 @@
 
 				<!-- Inserimento dati di fatturato -->
 
-				<div v-if="tipologia" class="card card-block">
+				<div v-if="tipologia" class="card card-block mb-3">
 
 					<h4 class="card-title">Fatturato e spesa</h4>
 
@@ -129,55 +129,58 @@
 				</div>
 
 				<!-- Iva e Irpef -->
+				<div class="mb-3">
 
-				<button v-show="tipologia" class="btn btn-warning btn-block mb-1" v-on:click="showIva = !showIva">
-					E l'IVA, la ritenuta d'acconto e l'IRPEF?
-				</button>
+					<button v-show="tipologia" class="btn btn-warning btn-block mb-1" v-on:click="showIva = !showIva">
+						E l'IVA, la ritenuta d'acconto e l'IRPEF?
+					</button>
 
-				<div v-if="showIva" class="card card-block card-outline-warning">
+					<div v-if="showIva" class="card card-block mb-3 card-outline-warning">
 
-					<h4 class="card-title">IVA, ritenuta d'acconto e IRPEF</h4>
+						<h4 class="card-title">IVA, ritenuta d'acconto e IRPEF</h4>
 
-					<div class="form-group">
-						<label>IVA da versare</label>
-						<div class="input-group">
-							<span class="input-group-addon">€</span>
-							<input class="form-control" disabled type="number" min="0" step="1" value="0">
+						<div class="form-group">
+							<label>IVA da versare</label>
+							<div class="input-group">
+								<span class="input-group-addon">€</span>
+								<input class="form-control" disabled type="number" min="0" step="1" value="0">
+							</div>
+							<small class="form-text text-muted">Non si è soggetti al versamento dell'IVA.</small>
 						</div>
-						<small class="form-text text-muted">Non si è soggetti al versamento dell'IVA.</small>
-					</div>
 
-					<div class="form-group">
-						<label>Ritenuta d'acconto</label>
-						<div class="input-group">
-							<span class="input-group-addon">€</span>
-							<input class="form-control" disabled type="number" min="0" step="1" value="0">
+						<div class="form-group">
+							<label>Ritenuta d'acconto</label>
+							<div class="input-group">
+								<span class="input-group-addon">€</span>
+								<input class="form-control" disabled type="number" min="0" step="1" value="0">
+							</div>
+							<small class="form-text text-muted">Non si è soggetti al versamento della ritenuta d'acconto.</small>
 						</div>
-						<small class="form-text text-muted">Non si è soggetti al versamento della ritenuta d'acconto.</small>
-					</div>
 
-					<div class="form-group">
-						<label>IRPEF da versare</label>
-						<div class="input-group">
-							<span class="input-group-addon">€</span>
-							<input class="form-control" disabled type="number" min="0" step="1" value="0">
+						<div class="form-group">
+							<label>IRPEF da versare</label>
+							<div class="input-group">
+								<span class="input-group-addon">€</span>
+								<input class="form-control" disabled type="number" min="0" step="1" value="0">
+							</div>
+							<small class="form-text text-muted">Non si è soggetti al versamento dell'IRPEF in quanto si versa una <strong>sostitiva</strong>.</small>
 						</div>
-						<small class="form-text text-muted">Non si è soggetti al versamento dell'IRPEF in quanto si versa una <strong>sostitiva</strong>.</small>
-					</div>
 
-					<p>È da aggiungere che non versando l'IVA neanche ci si porta in detrazione quella delle spese, che diventa un costo "vivo". Che non è possibile detrarre niente dall'IRPEF in quanto non la si versa e quindi si è fuori da qualsiasi agevolazione fiscale che agisce da detrattore (ristrutturazione edilizia, spese mediche, energetico, ecc.)</p>
+						<p>È da aggiungere che non versando l'IVA neanche ci si porta in detrazione quella delle spese, che diventa un costo "vivo". Che non è possibile detrarre niente dall'IRPEF in quanto non la si versa e quindi si è fuori da qualsiasi agevolazione fiscale che agisce da detrattore (ristrutturazione edilizia, spese mediche, energetico, ecc.)</p>
+
+					</div>
 
 				</div>
 
 				<!-- Previdenza -->
 
-				<div v-if="tipologia" class="card card-block">
+				<div v-if="tipologia" class="card card-block mb-3">
 
 					<h4 class="card-title">Regime di previdenza sociale</h4>
 
 					<p>Ovvero: <strong>pensione</strong>. Nel caso standard è il 25.72% del reddito. Non sono effettivamente tasse ma dei versamenti di previdenza sociale che andranno a comprire la nostra futura pensione.</p>
 
-					<p>Per alcune categorie di lavoratori vi è una gestione diversa della previdenza sociale: per esempio gli avvocati hanno una loro cassa di previdenza sociale e quindi non sono soggetti al pagemento della previdenza sociale nelle casse dell'INPS per un valore diverso da quello degli altri.</p>
+					<p><small class="text-muted">Per alcune categorie di lavoratori vi è una gestione diversa della previdenza sociale: per esempio gli avvocati hanno una loro cassa di previdenza sociale e quindi non sono soggetti al pagemento della previdenza sociale nelle casse dell'INPS per un valore diverso da quello degli altri.</small></p>
 
 					<div class="form-group">
 						<label>Tipo di contributo</label>
@@ -213,7 +216,7 @@
 
 				<!-- Anno 1 to 5 -->
 
-				<div v-if="tipologia" class="card card-block">
+				<div v-if="tipologia" class="card card-block mb-3">
 
 					<h4 class="card-title">Dal 1mo al 5to anno</h4>
 
@@ -248,7 +251,7 @@
 
 				<!-- Dal sesto anno -->
 
-				<div v-if="tipologia" class="card card-block">
+				<div v-if="tipologia" class="card card-block mb-3">
 
 					<h4 class="card-title">Dal 6to anno</h4>
 
@@ -287,7 +290,7 @@
 
 				<hr>
 				
-				<div class="text-xs-center">
+				<div class="text-center">
 
 					<p>Made with <i class="fa fa-heart text-danger"></i> by <a href="http://www.andrearufo.it/">Andrea Rufo</a></p>
 
@@ -301,11 +304,11 @@
 	</div>
 	
 	<!-- jQuery first, then Tether, then Bootstrap JS. -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue.min.js"></script>
 
 	<script>
 
